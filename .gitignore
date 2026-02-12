@@ -1,0 +1,34 @@
+# Node modules
+node_modules/
+
+# macOS DS_Store
+.DS_Store
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# dotenv environment variable files
+.env
+
+# Next.js build output
+/.next/
+
+# Deriving builds
+/build/
+
+# coverage directory used by tools like istanbul
+/coverage/
+
+# Compiled binary artifacts
+*.o
+*.so
+*.dll
+*.exe
+
+# Yarn Integrity file
+yarn-error.log
+
+# JetBrains IDEs
+.idea/
