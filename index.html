@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance Sheet Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        function calculate() {
+            const fixedAssetsGross = parseFloat(document.getElementById('fixed-assets-gross').value) || 0;
+            const depreciation = parseFloat(document.getElementById('depreciation').value) || 0;
+            const inventories = parseFloat(document.getElementById('inventories').value) || 0;
+            const receivables = parseFloat(document.getElementById('receivables').value) || 0;
+            const cash = parseFloat(document.getElementById('cash').value) || 0;
+            const equity = parseFloat(document.getElementById('equity').value) || 0;
+            const longTermDebts = parseFloat(document.getElementById('long-term-debts').value) || 0;
+            const currentLiabilities = parseFloat(document.getElementById('current-liabilities').value) || 0;
+
+            const stableAssets = fixedAssetsGross - depreciation + inventories + receivables + cash;
+            const stableResources = equity + longTermDebts;
+            const workingCapital = stableResources - currentLiabilities;
+            const workingCapitalRequirement = currentLiabilities;
+            const netCash = cash - currentLiabilities;
+
+            document.getElementById('stable-assets').innerText = stableAssets.toFixed(2);
+            document.getElementById('stable-resources').innerText = stableResources.toFixed(2);
+            document.getElementById('working-capital').innerText = workingCapital.toFixed(2);
+            document.getElementById('working-capital-requirement').innerText = workingCapitalRequirement.toFixed(2);
+            document.getElementById('net-cash').innerText = netCash.toFixed(2);
+        }
+    </script>
+</head>
+<body class="bg-gray-100 p-5">
+    <div class="container mx-auto">
+        <h1 class="text-2xl font-bold mb-5">Balance Sheet Converter</h1>
+        <form class="mb-5">
+            <input type="number" id="fixed-assets-gross" placeholder="Fixed Assets (Gross)" class="p-2 m-2 border rounded" required />
+            <input type="number" id="depreciation" placeholder="Depreciation" class="p-2 m-2 border rounded" required />
+            <input type="number" id="inventories" placeholder="Inventories" class="p-2 m-2 border rounded" required />
+            <input type="number" id="receivables" placeholder="Receivables" class="p-2 m-2 border rounded" required />
+            <input type="number" id="cash" placeholder="Cash" class="p-2 m-2 border rounded" required />
+            <input type="number" id="equity" placeholder="Equity" class="p-2 m-2 border rounded" required />
+            <input type="number" id="long-term-debts" placeholder="Long-term Debts" class="p-2 m-2 border rounded" required />
+            <input type="number" id="current-liabilities" placeholder="Current Liabilities" class="p-2 m-2 border rounded" required />
+            <button type="button" onclick="calculate()" class="bg-blue-500 text-white p-2 rounded">Calculate</button>
+        </form>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded shadow">
+                <h2 class="font-bold">Calculations</h2>
+                <p>Stable Assets: <span id="stable-assets">0.00</span></p>
+                <p>Stable Resources: <span id="stable-resources">0.00</span></p>
+                <p>Working Capital: <span id="working-capital">0.00</span></p>
+                <p>Working Capital Requirement: <span id="working-capital-requirement">0.00</span></p>
+                <p>Net Cash: <span id="net-cash">0.00</span></p>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+                <h2 class="font-bold">Dashboard</h2>
+                <p>Accounting Balance Sheet Reclassification</p>
+                <p>(Details will be calculated based on the inputs)</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
